@@ -1,0 +1,19 @@
+body {
+    background-color: #FFE;
+}
+
+h1 {
+    text-align: center;
+}
+
+#todoTasksForm input {
+    margin-bottom: 1.2em;
+}
+
+.listItem {
+    margin-bottom: 0.8em;
+}
+
+.listItem button {
+    margin-right: 0.5em;
+}
