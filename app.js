@@ -1,1 +1,1 @@
-var sampleTodoApp = angular.module('SampleTodoApp', ['firebase', 'ui.bootstrap']);
+var sampleTodoApp = angular.module('SampleTodoApp', ['firebase']);
