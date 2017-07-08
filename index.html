@@ -25,60 +25,73 @@
 
         <hr/>
 
-        <!-- Todo tasks lists-->
-        <div id="tasksLists ">
-            <div id="pendingListDiv" ng-show="(todoTasks | filter:{status: 'PENDING'}).length">
-                <h4>Pending Tasks</h4>
+        <div id="tasksListsAccordion ">
+            <div class="panel accordionPanel" id="pendingListDiv" ng-show="(todoTasks | filter:{status: 'PENDING'}).length">
+                <a data-toggle="collapse" data-parent="#accordion" data-target="#collapsePending">
+                    <h4>Pending Tasks</h4>
+                </a>
 
-                <div ng-repeat="todoTask in todoTasks | filter:{status: 'PENDING'}" class="row listItem">
+                <div id="collapsePending">
+                    <div ng-repeat="todoTask in todoTasks | filter:{status: 'PENDING'}" class="row listItem">
 
-                    <div class="col-md-6">
-                        {{todoTask.name}}
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <!--start task-->
-                        <button class="btn btn-primary" ng-click="startTask($index, todoTask)">
+                        <div class="col-md-6">
+                            {{todoTask.name}}
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <!--start task-->
+                            <button class="btn btn-primary" ng-click="startTask($index, todoTask)">
                             <i class="glyphicon glyphicon-play"></i>Start
                         </button>
 
-                        <!--delete task-->
-                        <button class="btn btn-danger" ng-click="deleteTask($index, todoTask)">
+                            <!--delete task-->
+                            <button class="btn btn-danger" ng-click="deleteTask($index, todoTask)">
                             <i class="glyphicon glyphicon-remove"></i> Delete
                         </button>
 
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
+
                 <hr/>
             </div>
 
-            <div id="startedListDiv" ng-show="(todoTasks | filter:{status: 'STARTED'}).length">
-                <h4>Tasks in progress</h4>
+            <div class="panel accordionPanel" id="startedListDiv" ng-show="(todoTasks | filter:{status: 'STARTED'}).length">
+                <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseStarted">
+                    <h4>Tasks in progress</h4>
+                </a>
 
-                <div ng-repeat="todoTask in todoTasks | filter:{status: 'STARTED'}" class="row listItem">
+                <div id="collapseStarted">
+                    <div ng-repeat="todoTask in todoTasks | filter:{status: 'STARTED'}" class="row listItem">
 
-                    <div class="col-md-6">
-                        {{todoTask.name}}
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <!--complete task-->
-                        <button class="btn btn-success" ng-click="completeTask($index, todoTask)">
+                        <div class="col-md-6">
+                            {{todoTask.name}}
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <!--complete task-->
+                            <button class="btn btn-success" ng-click="completeTask($index, todoTask)">
                             <i class="glyphicon glyphicon-ok"></i>Complete
                         </button>
 
-                        <!--delete task-->
-                        <button class="btn btn-danger" ng-click="deleteTask($index, todoTask)">
+                            <!--delete task-->
+                            <button class="btn btn-danger" ng-click="deleteTask($index, todoTask)">
                             <i class="glyphicon glyphicon-remove"></i> Delete
                         </button>
 
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
-                <hr/>
             </div>
 
-            <div id="completedListDiv">
-                <h4 ng-show="(todoTasks | filter:{status: 'COMPLETED'}).length">Tasks completed</h4>
+            <hr/>
+        </div>
+
+        <div class="panel accordionPanel" id="completedListDiv" ng-show="(todoTasks | filter:{status: 'COMPLETED'}).length">
+            <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseCompleted">
+                <h4>Tasks completed</h4>
+            </a>
+            <div id="collapseCompleted">
 
                 <div ng-repeat="todoTask in todoTasks | filter:{status: 'COMPLETED'}" class="row listItem">
 
@@ -97,6 +110,7 @@
             </div>
         </div>
     </div>
+
 
 
     <!-- AngularJS -->

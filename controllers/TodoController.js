@@ -1,7 +1,23 @@
 sampleTodoApp.controller("TodoController", ["$scope", "$firebaseArray",
     function($scope, $firebaseArray) {
-        //creating reference to a the database in firebase
-        //var todoTasksInDB = new Firebase("https://sampletodolistapp.firebaseio.com/");
+        $scope.oneAtATime = false;
+        $scope.groups = [{
+                title: "Room1",
+                content: "Dynamic Group Body - 1"
+            },
+            {
+                title: "Room2",
+                content: "Dynamic Group Body - 2"
+            }
+        ];
+
+        $scope.items = ['Camera 1', 'Camera 2', 'Camera 3'];
+
+        $scope.addItem = function() {
+            var newItemNo = $scope.items.length + 1;
+            $scope.items.push('Camera ' + newItemNo);
+        };
+        //creating reference to a the database in firebase        
         var config = {
             apiKey: "AIzaSyDGqIe1zml0Fk2KVjL2_cr0Dvqac3i3-Lc",
             authDomain: "sampletodolistapp.firebaseapp.com",
@@ -25,7 +41,7 @@ sampleTodoApp.controller("TodoController", ["$scope", "$firebaseArray",
 
         //add the task to the db
         $scope.addTask = function() {
-            if ($scope.taskName.length > 4) {
+            if ($scope.taskName && $scope.taskName.length > 4) {
                 // CREATE A UNIQUE ID            
                 var timestamp = new Date().valueOf();
 

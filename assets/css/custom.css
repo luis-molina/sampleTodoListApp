@@ -17,3 +17,8 @@ h1 {
 .listItem button {
     margin-right: 0.5em;
 }
+
+.panel.accordionPanel {
+    background-color: #FFE;
+    color: #000;
+}
