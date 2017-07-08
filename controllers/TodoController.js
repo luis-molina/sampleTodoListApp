@@ -16,7 +16,7 @@ sampleTodoApp.controller("TodoController", ["$scope", "$firebaseArray",
         var database = firebase.database();
 
         //get all tasks on db
-        $scope.todoTasks = $firebaseArray(database.ref());
+        $scope.todoTasks = $firebaseArray(database.ref().child("tasks"));
 
         //alert for error
         $scope.alertError = function() {
