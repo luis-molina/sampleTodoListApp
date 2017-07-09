@@ -28,7 +28,7 @@
         <div id="tasksListsAccordion ">
             <div class="panel accordionPanel" id="pendingListDiv" ng-show="(todoTasks | filter:{status: 'PENDING'}).length">
                 <a data-toggle="collapse" data-parent="#accordion" data-target="#collapsePending">
-                    <h4>Pending Tasks</h4>
+                    <h4><i class="glyphicon glyphicon-chevron-down"></i> Pending Tasks</h4>
                 </a>
 
                 <div id="collapsePending">
@@ -58,10 +58,10 @@
 
             <div class="panel accordionPanel" id="startedListDiv" ng-show="(todoTasks | filter:{status: 'STARTED'}).length">
                 <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseStarted">
-                    <h4>Tasks in progress</h4>
+                    <h4><i class="glyphicon glyphicon-chevron-down"></i>Tasks in progress</h4>
                 </a>
 
-                <div id="collapseStarted">
+                <div id="collapseStarted" class="collapse">
                     <div ng-repeat="todoTask in todoTasks | filter:{status: 'STARTED'}" class="row listItem">
 
                         <div class="col-md-6">
@@ -89,9 +89,9 @@
 
         <div class="panel accordionPanel" id="completedListDiv" ng-show="(todoTasks | filter:{status: 'COMPLETED'}).length">
             <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseCompleted">
-                <h4>Tasks completed</h4>
+                <h4><i class="glyphicon glyphicon-chevron-down"></i>Tasks completed</h4>
             </a>
-            <div id="collapseCompleted">
+            <div id="collapseCompleted" class="collapse">
 
                 <div ng-repeat="todoTask in todoTasks | filter:{status: 'COMPLETED'}" class="row listItem">
 
