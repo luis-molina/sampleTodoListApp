@@ -1,17 +1,6 @@
 sampleTodoApp.controller("TodoController", ["$scope", "$firebaseArray",
     function($scope, $firebaseArray) {
-        $scope.oneAtATime = false;
-        $scope.groups = [{
-                title: "Room1",
-                content: "Dynamic Group Body - 1"
-            },
-            {
-                title: "Room2",
-                content: "Dynamic Group Body - 2"
-            }
-        ];
-
-        $scope.items = ['Camera 1', 'Camera 2', 'Camera 3'];
+        var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
 
         $scope.addItem = function() {
             var newItemNo = $scope.items.length + 1;
@@ -40,23 +29,98 @@ sampleTodoApp.controller("TodoController", ["$scope", "$firebaseArray",
         }
 
         //add the task to the db
+        /*$scope.addTask = function() {
+            if ($scope.taskName && $scope.taskName.length > 4) {
+                var sFileName = $("#nameImg").val();
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            var filesSelected = document.getElementById("nameImg").files;
+                            console.log(filesSelected);
+                            var fileToLoad;
+                            if (filesSelected.length > 0) {
+                                fileToLoad = filesSelected[0];
+
+
+                                console.log(fileToLoad);
+                                var fileReader = new FileReader();
+
+                                fileReader.onload = function(fileLoadedEvent) {
+                                    var textAreaFileContents = document.getElementById(
+                                        "textAreaFileContents"
+                                    );
+
+                                    // CREATE A UNIQUE ID            
+                                    var timestamp = new Date().valueOf();
+
+                                    $scope.todoTasks.$add({
+                                        id: "task" + timestamp,
+                                        name: $scope.taskName,
+                                        status: 'PENDING',
+                                        img: {
+                                            date: timestamp,
+                                            base64: fileLoadedEvent.target.result
+                                        }
+                                    });
+
+                                    $scope.taskName = "";
+                                    
+                                };
+
+
+                                fileReader.readAsDataURL(fileToLoad);
+
+                                break;
+                            } else {
+                                var timestamp = new Date().valueOf();
+                                $scope.todoTasks.$add({
+                                    id: "task" + timestamp,
+                                    name: $scope.taskName,
+                                    status: 'PENDING',
+                                });
+                                $scope.taskName = "";
+                            }
+                        }
+                    }
+
+                    if (!blnValid) {
+                        alert('File is not valid');
+                        return false;
+                    }
+
+
+                    return true;
+                } else {
+                    var timestamp = new Date().valueOf();
+                    $scope.todoTasks.$add({
+                        id: "task" + timestamp,
+                        name: $scope.taskName,
+                        status: 'PENDING',
+                    });
+                    $scope.taskName = "";
+                }
+
+            } else {
+                $scope.alertError();
+            }
+        }*/
+
         $scope.addTask = function() {
             if ($scope.taskName && $scope.taskName.length > 4) {
-                // CREATE A UNIQUE ID            
                 var timestamp = new Date().valueOf();
-
                 $scope.todoTasks.$add({
                     id: "task" + timestamp,
                     name: $scope.taskName,
-                    status: 'PENDING'
+                    status: 'PENDING',
                 });
-
                 $scope.taskName = "";
             } else {
                 $scope.alertError();
             }
         }
-
 
         // remove task from db
         $scope.deleteTask = function(index, task) {
